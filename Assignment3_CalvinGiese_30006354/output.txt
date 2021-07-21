@@ -1,16 +1,7 @@
-car
+arc car 
 
-dog
+god dog 
 
-bed
+bed 
 
-stop
-
-god
-
-pots
-
-arc
-
-tops
-
+tops pots stop 

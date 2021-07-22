@@ -60,8 +60,7 @@ public class AnagramList {
 			}
 		}
 		
-		// Build anagram array with the corrected length and temporary ones to fill with all lists of words, sorted and original
-		this.anagram = new String[length];
+		// Builds two temporary arrays, one with the words in original format for printing and one with the sorted format for comparing
 		String[] temp = new String[this.orig.length];
 		
 		for(int i = 0; i < this.sort.length; i++) {

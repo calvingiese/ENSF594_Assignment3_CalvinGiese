@@ -25,7 +25,7 @@ public class AnagramsApp {
 		// Reads in the text file and sorts words
 		TextReader sortText = new TextReader();
 		String[] sortArray = sortText.getTextArray();
-		String[] sortedArray = sortText.sortArray(sortArray);
+		String[] sortedArray = sortText.sortArray(sortArray);		
 		
 		// Creates list of anagrams
 		AnagramList list = new AnagramList(textArray, sortedArray);

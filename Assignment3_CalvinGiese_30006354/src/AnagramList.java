@@ -60,36 +60,65 @@ public class AnagramList {
 			}
 		}
 		
-		// Build anagram array with the corrected length and a temporary one to fill with all lists of words
-		this.anagram = new String [length];
+		// Build anagram array with the corrected length and temporary ones to fill with all lists of words, sorted and original
+		this.anagram = new String[length];
 		String[] temp = new String[this.orig.length];
 		
 		for(int i = 0; i < this.sort.length; i++) {
 			LinkedList list = new LinkedList();
-			list.insertAtStart(new Word(this.orig[i]));
+			list.insertAtStart(new Word(this.sort[i]));
 			for(int j = 0; j < this.sort.length; j++) {
 				if(i != j) {
-					if(this.sort[i].equals(this.sort[j])) {
-						list.insertAtStart(new Word(this.orig[j]));
+					if(this.orig[i].equals(this.orig[j])) {
+						break;
+					}
+					else if(this.sort[i].equals(this.sort[j])) {
+						list.insertAtStart(new Word(this.sort[j]));
 					}
 				}
 			}
 			temp[i] = list.toString();
 		}
 		
+		String[] temp2 = new String[this.orig.length];
+		
+		for(int i = 0; i < this.sort.length; i++) {
+			LinkedList list2 = new LinkedList();
+			list2.insertAtStart(new Word(this.orig[i]));
+			for(int j = 0; j < this.sort.length; j++) {
+				if(i != j) {
+					if(this.orig[i].equals(this.orig[j])) {
+						break;
+					}
+					else if(this.sort[i].equals(this.sort[j])) {
+						list2.insertAtStart(new Word(this.orig[j]));
+					}
+				}
+			}
+			temp2[i] = list2.toString();
+		}
+		
+		// Builds empty return array to fill with list of anagrams
+		this.anagram = new String[length];
+		int count = 0;
+		
 		// Fill anagram array with lists of anagrams, not repeating from the temp array
 		for(int i = 0; i < temp.length; i++) {
 			int test = 0;
 			for(int j = 0; j < temp.length; j++) {
 				if(i != j) {
-					if(temp[i].equals(temp[j])) {
+					if(i < j) {
+						if(temp2[i].equals(temp2[j])) {
 						test = 1;
+						j = temp.length;
+						}
 					}
 				}
 			}
-			if(test == 0) {
-				if(i < length) {
-					this.anagram[i] = temp[i];
+			if(count < length) {
+				if(test == 0) {
+					this.anagram[count] = temp2[i];
+					count += 1;
 				}
 			}
 		}
